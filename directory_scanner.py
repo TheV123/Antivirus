@@ -2,6 +2,8 @@ import os
 import hashlib
 import sys
 
+md5_malware_hashes = []
+
 def sha256_file(filename):
     with open(filename, 'rb') as f:
         file_content = f.read()
@@ -20,13 +22,26 @@ def md5_file(filename):
     hash_value = hashlib.md5(file_content)
     return hash_value.hexdigest()
 
+def md5_scan(filename):
+    with open(filename, 'r') as f:
+        global md5_malware_hashes
+        if md5_file(filename) in md5_malware_hashes:
+            print("MD5 hash matches a known malware hash!")
+
+
 def scan_directory(directory):
     for root, dirs, files in os.walk(directory):
         for file in files:
             filename = os.path.join(root, file)
-            print(f"Filename: {filename}, Sha256: {sha256_file(filename)}, Sha1: {sha1_file(filename)}, Md5 {md5_file(filename)}")
+            md5_scan(filename)
 
 def main():
+    global md5_malware_hashes
+    #gotten from https://github.com/Len-Stevens/MD5-Malware-Hashes/tree/main
+    with open("MD5_hashes.txt", "r") as f:
+        for line in f:
+            md5_malware_hashes.append(line.strip())
+    
     directory = os.getcwd()
     scan_directory(directory)
     
