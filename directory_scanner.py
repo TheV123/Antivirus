@@ -1,6 +1,7 @@
 import os
 import hashlib
 import sys
+import args
 
 md5_malware_hashes = []
 sha1_malware_hashes = []
@@ -72,4 +73,5 @@ def main():
     scan_directory(directory)
     
 if __name__ == '__main__':
+    arguments = args.parse_args()
     main()
