@@ -52,3 +52,4 @@ def scan_directory(args):
             md5_scan(filename)
             sha256_scan(filename)
             sha1_scan(filename)
+

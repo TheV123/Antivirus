@@ -1,13 +1,11 @@
+import hashlib
 import os
-import sys
-import args
 import directory_scanner
-
+import args
 
 md5_malware_hashes = []
 sha1_malware_hashes = []
 sha256_malware_hashes = []
-
 
 def store_hashes():
     global md5_malware_hashes
@@ -24,14 +22,9 @@ def store_hashes():
     #gotten from MalwareBazaar https://bazaar.abuse.ch/export/
     with open("full_sha256.txt", "r") as f:
         sha256_malware_hashes = f.read().splitlines()[9:-1]
-        
-
-def arguments_parser():
-    arguments = args.parse_args()
-    #check the arguments if -s flag is there
-    directory_scanner.scan_directory(args)
     
-
-if __name__ == 'main':
+    
+if __name__ == '__main__':
     store_hashes()
-    arguments_parser()
+    arguments = args.parse_args()
+    directory_scanner.scan_directory(arguments)
