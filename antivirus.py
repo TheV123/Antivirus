@@ -1,6 +1,7 @@
 import hashlib
 import os
 import directory_scanner
+import port_scanner
 import args
 
 md5_malware_hashes = []
@@ -27,4 +28,7 @@ def store_hashes():
 if __name__ == '__main__':
     store_hashes()
     arguments = args.parse_args()
-    directory_scanner.scan_directory(arguments)
+    if arguments.directory:
+        directory_scanner.scan_directory(arguments)
+    if arguments.scan_ports:
+        port_scanner.scan_ports()

@@ -43,8 +43,8 @@ def md5_scan(filename):
 
 
 def scan_directory(args):
-    directory = args.scan_directory
-    # print(directory)
+    directory = str(args.directory)
+    print(f"Scanning directory {directory}")
     for root, dirs, files in os.walk(directory):
         for file in files:
             filename = os.path.join(root, file)

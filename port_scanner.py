@@ -3,9 +3,8 @@ import subprocess
 import sys
 from datetime import datetime
 
-
 def scan_ports():
-    subprocess.call('clear', shell=True)
+    # subprocess.call('clear', shell=True)
     
     START_PORT = 1
     END_PORT = 65535    
@@ -23,7 +22,4 @@ def scan_ports():
             print("Exiting...")
             sys.exit()
         except socket.error:
-            print(f"Couldn't connect to server {port}")
-            sys.exit()
-
-scan_ports()
+            print(f"Service on {port} is unknown")

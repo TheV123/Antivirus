@@ -14,12 +14,15 @@ def setup_argument_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "-s",
         "--scan_directory",
+        action="store",
+        nargs="?",
         dest= "scan_directory",
         help="Scan a directory with a path provided as an argument. Make sure to put quotes around the path. Defaults to current directory if not provided",
     )
     parser.add_argument(
         "-p",
         "--scan_ports",
+        action="store_true",
         dest = "scan_ports",
         help = "Scan all ports ..." #finish help description
     )
@@ -31,5 +34,4 @@ def parse_args(argv = None) -> argparse.Namespace:
     
     args.directory = os.getcwd() if args.scan_directory is None else args.scan_directory
     args.port = True if args.scan_ports else False
-    
     return args
