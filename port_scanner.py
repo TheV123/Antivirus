@@ -2,6 +2,7 @@ import socket
 import subprocess
 import sys
 from datetime import datetime
+import antivirus
 
 def scan_ports():
     # subprocess.call('clear', shell=True)
@@ -16,7 +17,10 @@ def scan_ports():
             result = sock.connect_ex(('localhost', port))
             if result == 0:
                 service = socket.getservbyport(port)
-                print(f"Your computer is connected to port {port} with service {service}")
+                if port in antivirus.malious_ports:
+                    print(f'Your computer appears to be connected to malicious port {port}')
+                else:
+                    print(f"Your computer is connected to port {port} with service {service}")
             sock.close()
         except KeyboardInterrupt:
             print("Exiting...")
