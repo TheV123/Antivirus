@@ -6,8 +6,9 @@ basic known malware
 Roadmap:
 -  [x] Scan the current directory for known sha256, sha1, and md5 hashes
 -  [ ] Split up program using multiple files and subprocesses
--  [ ] Command line args
--  [ ] Scanning network ports to check for malicious IP connects
+-  [x] Command line args
+-  [x] Scanning network ports to check for malicious port connects
+-  [ ] IP scanning
 -  [ ] Optimize scanning process using multithreading or cached data
 -  [ ] API calls from MalwareBazaar for updated malware list once a day
 -  [ ] Implementing ML learning to predict probability of a file being a virus or malicious port connection
